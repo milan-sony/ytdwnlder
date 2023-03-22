@@ -2,6 +2,13 @@ from pytube import YouTube
 from pytube.cli import on_progress #this module contains the built in progress bar. 
 from sys import argv
 
+import pyfiglet
+  
+result = pyfiglet.figlet_format("YtDwnlder")
+print("\n")
+print(result)
+print("Created by Milan Sony \nhttps://linktr.ee/milansony\n")
+
 def dwnldavideo():
   # Get link from commandline
   # Eg: python ytdwnld.py "https://youtu.be/m7Bc3pLyij0"
@@ -31,7 +38,7 @@ def main():
   while True:
     print("Enter your choice")
     print("1. Download a youtube video \n2. Download a youtube playlist \n3. Download all of the videos created by a channel \n4. Exit")
-    choice = input("Please enter the choice: ")
+    choice = input("Please enter your choice: ")
 
     if (choice == '1'):
       dwnldavideo()
@@ -41,8 +48,9 @@ def main():
       dwnldachannel()
     elif (choice == '4'):
       print("You have choose exit | Type: python ytdwnld.py to run again")
+      print("\n")
       exit()
     else:
-      print("Invalid choice. Please try again")
+      print("Invalid choice. Please try again\n")
 
 main()

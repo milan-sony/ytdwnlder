@@ -1,6 +1,10 @@
 from pytube import YouTube
 from pytube.cli import on_progress #this module contains the built in progress bar. 
 from sys import argv
+import pyfiglet
+  
+result = pyfiglet.figlet_format("YtDwnlder", font = "slant"  )
+print(result)
 
 # Get link from commandline
 # Eg: python ytdwnld.py "https://youtu.be/m7Bc3pLyij0"
