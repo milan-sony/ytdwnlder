@@ -1,17 +1,16 @@
 from pytube import YouTube
 from pytube.cli import on_progress #this module contains the built in progress bar. 
-from sys import argv
 
 import pyfiglet
-  
+
 result = pyfiglet.figlet_format("YtDwnlder")
 print("\n")
 print(result)
-print("Created by Milan Sony \nhttps://linktr.ee/milansony\n")
+print("Created by Milan Sony \nhttps://linktr.ee/milansony")
 
 def dwnldavideo():
-  # Get link from commandline
-  # Eg: python ytdwnld.py "https://youtu.be/m7Bc3pLyij0"
+  print("\n")
+  print("You have choose 1 | Download a youtube video")
   ytlink = input("Youtube video link: ")
 
   # Creating an object of youtube
@@ -20,33 +19,54 @@ def dwnldavideo():
   # Print some description about the youtube video
   print("Title:", ytobj.title)
   print("Creator:", ytobj.author)
+  print("\n")
+
+  print("Dowloading in progress")
 
   # Download the video
   ytvideo = ytobj.streams.get_highest_resolution()
+
   ytvideo.download(r'C:\Users\MILAN\downloads')
   print("\n")
   print("Download Complete")
+  print (f'RES: {ytvideo.resolution}\nFPS: {ytvideo.fps}\nTYPE: {ytvideo.subtype}')
+
+def dwnldaudio():
+  print("\n")
+  print("You have choose 2 | Download audio from a youtube video")
+  ytlink = input("Youtube video link: ")
+
+  ytobj = YouTube(ytlink)
+
+  # Print some description about the youtube video
+  print("Title:", ytobj.title)
+  print("Creator:", ytobj.author)
   print("\n")
 
-def dwnldaplaylist():
-  print("playlist")
+  print("Dowloading in progress")
 
-def dwnldachannel():
-  print("channel")
+  yt_stream = ytobj.streams.filter(only_audio=True, mime_type='audio/mp4')
+
+  if yt_stream:
+    yt_stream = yt_stream[0]
+
+  print (f'BITRATE: {yt_stream.abr}\nTYPE: {yt_stream.subtype}')
+  yt_stream.download(r'C:\Users\MILAN\downloads')
+  print("\n")
+  print("Download Complete")
 
 def main():
   while True:
+    print("\n")
     print("Enter your choice")
-    print("1. Download a youtube video \n2. Download a youtube playlist \n3. Download all of the videos created by a channel \n4. Exit")
+    print("1. Download a youtube video \n2. Download audio from a youtube video \n3. Exit")
     choice = input("Please enter your choice: ")
 
     if (choice == '1'):
       dwnldavideo()
     elif (choice == '2'):
-      dwnldaplaylist()
+      dwnldaudio()
     elif (choice == '3'):
-      dwnldachannel()
-    elif (choice == '4'):
       print("You have choose exit | Type: python ytdwnld.py to run again")
       print("\n")
       exit()
