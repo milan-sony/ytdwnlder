@@ -26,7 +26,9 @@ def dwnldavideo():
   # Download the video
   ytvideo = ytobj.streams.get_highest_resolution()
 
-  ytvideo.download(r'C:\Users\MILAN\downloads')
+  ytvideo.download()
+  # you can either put the absolute path of the folder where you want the file to be saved in download()  
+  # eg: ytvideo.download(r'C:\Users\MILAN\downloads')
   print("\n")
   print("Download Complete")
   print (f'RES: {ytvideo.resolution}\nFPS: {ytvideo.fps}\nTYPE: {ytvideo.subtype}')
@@ -51,7 +53,7 @@ def dwnldaudio():
     yt_stream = yt_stream[1]
 
   print (f'BITRATE: {yt_stream.abr}\nTYPE: {yt_stream.subtype}')
-  yt_stream.download(r'C:\Users\MILAN\downloads')
+  yt_stream.download()
   print("\n")
   print("Download Complete")
 
